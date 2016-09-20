@@ -42,7 +42,7 @@ ModuleLoader.registerAnnotations = function(absolutePathToLocation) {
 
 ModuleLoader._registerFile = function(origin, file) {
     var fileLocation = path.resolve(origin, file);
-    if(fs.statSync(fileLocation).isDirectory) {
+    if(fs.statSync(fileLocation).isDirectory()) {
         var files = fs.readdirSync(fileLocation);
         files.forEach(function(val) {
             ModuleLoader._registerFile(fileLocation, val);
