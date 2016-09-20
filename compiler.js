@@ -1,5 +1,4 @@
 var esprima = require('esprima'),
-    fs = require('fs'),
     Lexer = require('lex'),
     util = require('util'),
     escodegen = require('escodegen'),
@@ -10,6 +9,12 @@ function Compiler() {
     this._lexer = new Lexer();
     this._addAnnotationRules();
     this._annotationMap = {};
+}
+
+Compiler._annotations = {};
+
+Compiler.registerAnnotation = function(annotationName, location) {
+    Compiler._annotations[annotationName] = location;
 }
 
 Compiler.prototype.setLoader = function(moduleLoader) {
@@ -26,7 +31,7 @@ Compiler.prototype._addAnnotationRules = function() {
             annotationArguments = arguments[2] ? arguments[2].split(',') : [];
 
         self._moduleData = self._moduleData.replace(text, 'function ' + annotationName + '(){}\n');
-        var moduleFunction = self._moduleLoader.requireWithContext(path.resolve(__dirname, './default/', annotationName));
+        var moduleFunction = self._moduleLoader.requireWithContext(Compiler._annotations[annotationName]);
 
         annotationArguments.forEach(function(argument) {
             var keyValue = argument.split("=");
@@ -47,7 +52,7 @@ Compiler.prototype._addAnnotationRules = function() {
     this._lexer.addRule(/.*/g, function() {
 
     });
-}
+};
 
 Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
     var self = this;
