@@ -1,0 +1,31 @@
+{
+  "name": "annoteJS",
+  "version": "0.1.0",
+  "description": "An annotation support framework for Javascript",
+  "main": "compiler.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atrifan/annoteJS.git"
+  },
+  "keywords": [
+    "javascript",
+    "JS",
+    "annotations",
+    "NodeJS",
+    "framework"
+  ],
+  "author": "Trifan Alex <trifan.alex.criss@gmail.com> (https://ro.linkedin.com/in/trifanalexandru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atrifan/annoteJS/issues"
+  },
+  "devDependencies": {
+    "mocha": "",
+    "expect.js": "",
+    "sinon": "",
+    "mocha-phantomjs": ""
+  }
+}
