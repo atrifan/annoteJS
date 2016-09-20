@@ -31,7 +31,7 @@ Compiler.prototype._addAnnotationRules = function() {
             annotationArguments = arguments[2] ? arguments[2].split(',') : [];
 
         self._moduleData = self._moduleData.replace(text, 'function ' + annotationName + '(){}\n');
-        var moduleFunction = self._moduleLoader.requireWithContext(Compiler._annotations[annotationName]);
+        var moduleFunction = self._moduleLoader.requireWithAnnotations(Compiler._annotations[annotationName]);
 
         annotationArguments.forEach(function(argument) {
             var keyValue = argument.split("=");
@@ -205,7 +205,7 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
         try {
             if(index == 0) {
                 try {
-                    moduleInstance = self._moduleLoader.runInContext(data, callee.file, callee.originalFile);
+                    moduleInstance = self._moduleLoader.runWithAnnotations(data, callee.file, callee.originalFile);
                     callee.what.call(callee, moduleInstance);
                 }catch (ex){
                     throw ex;

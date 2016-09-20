@@ -53,9 +53,7 @@ ModuleLoader._registerFile = function(origin, file) {
     }
 };
 
-
-
-ModuleLoader.prototype.requireWithContext = function (filename, component, locale, presetScript, originalFile) {
+ModuleLoader.prototype.requireWithAnnotations = function (filename, component, locale, presetScript, originalFile) {
     if(!component) {
         component = {
             id: null,
@@ -124,7 +122,7 @@ ModuleLoader.prototype._compile = function (filename, originalFile) {
     return vm.runInThisContext(this._wrap(content, filename, originalFile), originalFile ? originalFile : filename);
 };
 
-ModuleLoader.prototype.runInContext = function(code, filename, originalFile) {
+ModuleLoader.prototype.runWithAnnotations = function(code, filename, originalFile) {
     var script = vm.runInThisContext(this._wrap(code, filename, originalFile), originalFile ? originalFile : filename);
     return this.requireWithContext(filename, undefined, undefined, script, originalFile);
 };
