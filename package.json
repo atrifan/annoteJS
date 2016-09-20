@@ -4,7 +4,8 @@
   "description": "An annotation support framework for Javascript",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "preinstall": "npm promised-io 0.3.5"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,6 @@
   "dependencies": {
     "esprima": "2.7.3",
     "lex": "1.7.9",
-    "escodegen": "1.8.1",
-    "promised-io": "0.3.5"
+    "escodegen": "1.8.1"
   }
 }
