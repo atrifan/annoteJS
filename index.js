@@ -5,7 +5,7 @@ var fs = require('fs'),
     path = require('path'),
     assert = require('assert'),
     Module = require('module'),
-    Compiler = require('../plugins/annotations/compiler'),
+    Compiler = require('./compiler'),
     logging = {
         debug: console.log,
         info: console.info,
