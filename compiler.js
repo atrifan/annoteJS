@@ -134,7 +134,7 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
                         elem.body.body.push(insertion);
                     });
                     if(firstDecorator > 0) {
-                        elem.body.body.push(esprima.parse("function randomFunction() {return Promise.seq(deferrers); }").body[0].body.body[0]);
+                        elem.body.body.push(esprima.parse("function randomFunction() {var Promise = require('promised-io/promise'); return Promise.seq(deferrers); }").body[0].body.body[0]);
                     }
                     toBeUsed = [];
                 }
@@ -187,7 +187,7 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
                         elem.expression.right.body.body.push(insertion);
                     });
                     if(firstDecorator > 0) {
-                        elem.expression.right.body.body.push(esprima.parse("function randomFunction() {return Promise.seq(deferrers); }").body[0].body.body[0]);
+                        elem.expression.right.body.body.push(esprima.parse("function randomFunction() {var Promise = require('promised-io/promise'); return Promise.seq(deferrers); }").body[0].body.body[0]);
                     }
                     toBeUsed = [];
                 }
