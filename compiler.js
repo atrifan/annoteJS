@@ -110,7 +110,9 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
                         }
                         if(firstDecorator == 0) {
                             //change the body
-                            elem.body = esprima.parse("function randomFunction() { var deferrers = [];}").body[0].body;
+                            elem.body = esprima.parse("function randomFunction() { var deferrers = []; }").body[0].body;
+                            elem.body.body.push(
+                                esprima.parse("function randomFunction() { var Promise = require('promised-io/promise')}").body[0].body.body[0]);
                             firstDecorator++;
                         }
 
@@ -134,7 +136,7 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
                         elem.body.body.push(insertion);
                     });
                     if(firstDecorator > 0) {
-                        elem.body.body.push(esprima.parse("function randomFunction() {var Promise = require('promised-io/promise'); return Promise.seq(deferrers); }").body[0].body.body[0]);
+                        elem.body.body.push(esprima.parse("function randomFunction() {return Promise.seq(deferrers); }").body[0].body.body[0]);
                     }
                     toBeUsed = [];
                 }
@@ -165,6 +167,8 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
                             //change the body
                             firstDecorator++;
                             elem.expression.right.body = esprima.parse("function randomFunction() {var deferrers = []; }").body[0].body;
+                            elem.expression.right.body.body.push(
+                                esprima.parse("function randomFunction() { var Promise = require('promised-io/promise')}").body[0].body.body[0]);
                         }
 
                         var remakeFunction = esprima.parse(util.format('var fn = function() {}'));
@@ -187,7 +191,7 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
                         elem.expression.right.body.body.push(insertion);
                     });
                     if(firstDecorator > 0) {
-                        elem.expression.right.body.body.push(esprima.parse("function randomFunction() {var Promise = require('promised-io/promise'); return Promise.seq(deferrers); }").body[0].body.body[0]);
+                        elem.expression.right.body.body.push(esprima.parse("function randomFunction() {return Promise.seq(deferrers); }").body[0].body.body[0]);
                     }
                     toBeUsed = [];
                 }
@@ -202,7 +206,6 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
     }
 
     var data = escodegen.generate(syntax);
-
     var moduleInstance;
     toCall.forEach(function(callee, index) {
         try {

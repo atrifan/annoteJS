@@ -182,8 +182,6 @@ ModuleLoader.prototype._makeCustomRequire = function (module, component, locale)
             } else {
                 return module.require(request);
             }
-        } else {
-            return module.require(request);
         }
 
         return module.require(request);

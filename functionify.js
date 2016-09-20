@@ -1,5 +1,3 @@
-var Promise = require('promised-io/promise');
-
 @Decorator()
 function decoratedBanana(x, y) {
     return x + y;

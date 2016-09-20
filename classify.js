@@ -1,5 +1,3 @@
-var Promise = require('promised-io/promise');
-
 function ClassBannana() {}
 
 @Standalone()
