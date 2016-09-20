@@ -18,7 +18,7 @@ function ModuleLoader() {
     this._cache = {};
 }
 
-ModuleLoader._uncacheableModules = [];
+ModuleLoader._uncacheableModules = ['compiler'];
 
 ModuleLoader.prototype._registerDefaultAnnotations = function() {
     ModuleLoader.registerAnnotations(path.resolve(__dirname, './default'));
@@ -48,7 +48,7 @@ ModuleLoader._registerFile = function(origin, file) {
             ModuleLoader._registerFile(fileLocation, val);
         })
     } else {
-        ModuleLoader._uncacheableModules.push(fileLocation);
+        ModuleLoader._uncacheableModules.push(fileLocation.replace('.js', ""));
         Compiler.registerAnnotation(file, fileLocation);
     }
 };
@@ -124,7 +124,7 @@ ModuleLoader.prototype._compile = function (filename, originalFile) {
 
 ModuleLoader.prototype.runWithAnnotations = function(code, filename, originalFile) {
     var script = vm.runInThisContext(this._wrap(code, filename, originalFile), originalFile ? originalFile : filename);
-    return this.requireWithContext(filename, undefined, undefined, script, originalFile);
+    return this.requireWithAnnotations(filename, undefined, undefined, script, originalFile);
 };
 
 /**
@@ -142,6 +142,7 @@ ModuleLoader.prototype._wrap = function (content, file, fileToCompile) {
             compiler.compileModule(content, file, fileToCompile) + '\n});';
         return data;
     } catch(ex) {
+        console.log("failure on ", file, content);
         throw ex;
     }
 };
@@ -170,14 +171,14 @@ ModuleLoader.prototype._makeCustomRequire = function (module, component, locale)
             } else if(path.basename(request).replace('.js', '') == 'module_loader') {
                 return module.require(modulePath);
             }
-            return self.requireWithContext(modulePath, component, locale);
+            return self.requireWithAnnotations(modulePath, component, locale);
         } else if(request[0] === '/' || (request[1] === ':' && request[2] === '\\')){
             if(path.basename(request).replace('.js', '') == 'module_loader') {
                 return module.require(request);
             }else if(path.extname(request) == '.json') {
                 return module.require(request);
             } else if(fs.existsSync(path.dirname(request))) {
-                return self.requireWithContext(request, component, locale);
+                return self.requireWithAnnotations(request, component, locale);
             } else {
                 return module.require(request);
             }

@@ -15,8 +15,8 @@ Compiler._annotations = {};
 
 Compiler.registerAnnotation = function(annotationName, location) {
     console.info(util.format("Registered annotation @%s from location %s", path.basename(annotationName, '.js'),
-        location));
-    Compiler._annotations[annotationName] = location;
+        location.replace('.js', '')));
+    Compiler._annotations[path.basename(annotationName, '.js')] = location.replace('.js', '');
 }
 
 Compiler.prototype.setLoader = function(moduleLoader) {
@@ -144,6 +144,7 @@ Compiler.prototype.compileModule = function(fileData, fileName, originalFile) {
                 elem.expression.right.type == 'FunctionExpression') {
                 var oldParms =  elem.expression.right.params,
                     oldBody =  elem.expression.right.body;
+
                 if(toBeUsed.length > 0) {
                     //useThem
                     var firstDecorator = 0;

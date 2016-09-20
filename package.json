@@ -29,8 +29,9 @@
     "mocha-phantomjs": ""
   },
   "dependencies": {
-    "esprima": "",
-    "lex": "",
-    "escodegen": ""
+    "esprima": "2.7.3",
+    "lex": "1.7.9",
+    "escodegen": "1.8.1",
+    "promised-io": "0.3.5"
   }
 }

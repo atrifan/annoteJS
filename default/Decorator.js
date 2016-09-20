@@ -1,5 +1,4 @@
-function Decorator(x, y) {
-    console.log(arguments);
+function implementation(x, y) {
     var self = this;
     return Promise.seq([
         function() {
@@ -16,5 +15,5 @@ function Decorator(x, y) {
 
 module.exports = {
     isDecorator: true,
-    implementation: Decorator
+    implementation: implementation
 }
