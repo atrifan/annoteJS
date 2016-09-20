@@ -1,4 +1,5 @@
 function implementation(x, y) {
+    var Promise = require('promised-io/promise');
     var self = this;
     return Promise.seq([
         function() {
