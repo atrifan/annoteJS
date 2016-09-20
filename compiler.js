@@ -14,7 +14,7 @@ function Compiler() {
 Compiler._annotations = {};
 
 Compiler.registerAnnotation = function(annotationName, location) {
-    console.info(util.format("Register annotations %s from location %s", annotationName, location));
+    console.info(util.format("Register annotations @%s from location %s", path.basename(annotationName), location));
     Compiler._annotations[annotationName] = location;
 }
 
