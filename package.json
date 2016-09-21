@@ -23,7 +23,13 @@
     "email": "trifan.alex.criss@gmail.com",
     "url": "https://ro.linkedin.com/in/trifanalexandru"
   },
-  "license": "MIT",
+
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.githubusercontent.com/atrifan/annoteJS/master/LICENSE"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/atrifan/annoteJS/issues"
   },
