@@ -1,6 +1,7 @@
 function ClassBannana() {}
 
 @Standalone()
+@MySpecialAnnotation(something)
 ClassBannana.prototype.entryMethod = function() {
     console.log("here it is");
 }
