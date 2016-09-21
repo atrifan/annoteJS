@@ -44,7 +44,7 @@
     "lex": "1.7.9",
     "escodegen": "1.8.1"
   },
-  "readme": "ERROR: No README data found!",
+  "readme": "README.md",
   "_id": "annoteJS@0.1.0",
   "dist": {
     "shasum": "35b85ddf52a0a9a1152b55b228629d7060f4e8a2"
