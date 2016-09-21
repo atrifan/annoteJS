@@ -1,6 +1,6 @@
 {
   "name": "annoteJS",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An annotation support framework for Javascript",
   "main": "index.js",
   "scripts": {
