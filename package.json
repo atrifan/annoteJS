@@ -16,7 +16,13 @@
     "JS",
     "annotations",
     "NodeJS",
-    "framework"
+    "framework",
+	"express",
+	"integration",
+	"easy",
+	"REST",
+	"logging",
+	"controllers"
   ],
   "author": {
     "name": "Trifan Alex",
