@@ -1,6 +1,6 @@
 # AnnoteJS Framework - annotations support framework 
 
-**Version 0.1.4 Beta [github](https://github.com/atrifan/annoteJS)**
+**Git: [github](https://github.com/atrifan/annoteJS)**
 
 ## Table of Contents
 

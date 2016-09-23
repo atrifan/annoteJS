@@ -70,7 +70,7 @@ ModuleLoader.prototype.requireWithAnnotations = function (filename, component, l
         toRequire = filename;
     }
 
-    var id = (originalFile ? originalFile : filename).replace('.js', '') + ':' + component.id + ';' + component.version + ':' + locale,
+    var id = path.basename((originalFile ? originalFile : filename), '.js')+ ':' + component.id + ';' + component.version + ':' + locale,
         module = this._cache[id];
 
     if (!module) {
